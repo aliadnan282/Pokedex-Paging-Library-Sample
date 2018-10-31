@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-                                    xmlns:app="http://schemas.android.com/apk/res-auto"
-                                    xmlns:tools="http://schemas.android.com/tools"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_margin="2dp"
-                                    app:cardCornerRadius="@dimen/cardview_default_radius"
-                                    app:cardElevation="@dimen/cardview_default_elevation"
-                                    app:cardUseCompatPadding="true">
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="2dp"
+    app:cardCornerRadius="@dimen/cardview_default_radius"
+    app:cardElevation="@dimen/cardview_default_elevation"
+    app:cardUseCompatPadding="true">
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="16dp"
         android:paddingLeft="8dp"
+        android:paddingTop="16dp"
         android:paddingRight="8dp"
-        android:paddingTop="16dp">
+        android:paddingBottom="16dp">
 
         <TextView
             android:id="@+id/tv_pokemon_id"
@@ -24,7 +24,7 @@
             android:textColor="@color/white"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="#001"/>
+            tools:text="#001" />
 
         <ImageView
             android:id="@+id/iv_pokemon"
@@ -35,7 +35,7 @@
             app:layout_constraintLeft_toRightOf="parent"
             app:layout_constraintRight_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_pokemon_id"
-            tools:src="@drawable/pokedex"/>
+            tools:src="@drawable/pokedex" />
 
         <TextView
             android:id="@+id/tv_pokemon"
@@ -46,8 +46,8 @@
             app:layout_constraintLeft_toRightOf="parent"
             app:layout_constraintRight_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/iv_pokemon"
-            tools:text="Bulbasaur"/>
+            tools:text="Bulbasaur" />
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-</android.support.v7.widget.CardView>
+</androidx.cardview.widget.CardView>

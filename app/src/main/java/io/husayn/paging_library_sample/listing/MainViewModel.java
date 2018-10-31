@@ -1,30 +1,45 @@
 package io.husayn.paging_library_sample.listing;
 
 
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.ViewModel;
-import android.arch.paging.PagedList;
+import android.app.Application;
 
-import io.husayn.paging_library_sample.PokemonApplication;
+import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
+import androidx.paging.DataSource;
+import androidx.paging.LivePagedListBuilder;
+import androidx.paging.PagedList;
 import io.husayn.paging_library_sample.data.Pokemon;
-import io.husayn.paging_library_sample.data.PokemonDao;
 import io.husayn.paging_library_sample.data.PokemonDataBase;
 
-public class MainViewModel extends ViewModel {
+public class MainViewModel extends AndroidViewModel {
 
     private static final int INITIAL_LOAD_KEY = 0;
     private static final int PAGE_SIZE = 20;
     private static final int PREFETCH_DISTANCE = 5;
+    private LiveData<PagedList<Pokemon>> personsLiveData;
 
-    final LiveData<PagedList<Pokemon>> pokemonList;
+    //personsLiveData =pagedListBuilder.
 
-    public MainViewModel() {
+    public MainViewModel(@NonNull Application application) {
+        super(application);
+        DataSource.Factory<Integer, Pokemon> factory = PokemonDataBase.getInstance(getApplication()).pokemonDao().getAllPagedPokemons();
+
+        LivePagedListBuilder<Integer, Pokemon> pagedListBuilder = new LivePagedListBuilder<Integer, Pokemon>(factory, 50);
+        personsLiveData = pagedListBuilder.build();
+    }
+
+    public LiveData<PagedList<Pokemon>> getPersonsLiveData() {
+        return personsLiveData;
+    }
+
+ /*   public MainViewModel() {
         PokemonDao pokemonDao = PokemonDataBase.getInstance(PokemonApplication.getContext()).pokemonDao();
-        pokemonList = pokemonDao.pokemons().create(INITIAL_LOAD_KEY, new PagedList.Config.Builder()
+        pokemonList = pokemonDao.getAllPagedPokemons().create(INITIAL_LOAD_KEY, new PagedList.Config.Builder()
                 .setPageSize(PAGE_SIZE)
                 .setPrefetchDistance(PREFETCH_DISTANCE)
                 .setEnablePlaceholders(true)
                 .build()
         );
-    }
+    }*/
 }
